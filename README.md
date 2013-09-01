@@ -13,11 +13,11 @@
 指令碼語言：PHP 5.3.10  
 資料庫管理介面：Adminer 3.7.1  
 反向快取伺服器：Varnish 3.0.4  
-其它工具套件：PEAR 1.9.4 + Git 1.8.4 + Zip 3.0
+其它工具套件：PEAR 1.9.4 + Git 1.8.4 + Zip 3.0  
 內容管理系統：Drupal 7.23 + Drush 6.0  
-選用之 Drupal 樣版：Open Framework 7.x-2.04 
+選用之 Drupal 樣版：Open Framework 7.x-2.04  
 加裝之 Drupal 模組：Varnish HTTP Accelerator Integration 7.x-1.0-beta2、Chaos tool suite 7.x-1.3、Views 7.x-3.7、Views Slideshow 7.x-3.0、Flex Slider 7.x-2.0-alpha2、FlexSlider Views Slideshow 7.x-2.x-dev、Media、7.x-1.3、Libraries API 7.x-2.1、CKEditor - WYSIWYG HTML editor 7.x-1.13、CAPTCHA 7.x-1.0、Link 7.x-1.1、Email Field 7.x-1.2、Advanced help 7.x-1.0  
-  
+   
 <br>
 安裝方式
 =
