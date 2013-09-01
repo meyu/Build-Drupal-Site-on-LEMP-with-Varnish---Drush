@@ -54,8 +54,6 @@ mv drupal-7.23/ web1/
 ```
 接著，將設定 web1 這個網站。  
 本文使用以下設定：
-* 資料庫系統管理者：<code>root</code>
-* 資料庫系統管理者密碼：<code>root.password</code>
 * 新增網站資料庫：<code>web1</code>
 * 設定網站資料庫的管理者：<code>web1DataAdmin</code>
 * 設定網站資料庫的管理者密碼：<code>web1DataAdmin.password</code>
@@ -64,6 +62,8 @@ mv drupal-7.23/ web1/
 * 設定網站的管理者 Email：<code>web1Admin@example.com</code>
 
 請留意網站與網站資料庫的差異，其帳號亦是分開設定。  
+另，本文的資料庫系統管理者為<code>root</code>，密碼為 <code>root.password</code>。  
+
 依上述設定，其指令如下：
 ```bash
 cd web1/ &&
@@ -81,7 +81,7 @@ drush site-install \
 
 ###安裝及設定模組
 本文預定使用以下模組：Varnish HTTP Accelerator Integration、Chaos tool suite、Views、Views Slideshow、Flex Slider、FlexSlider Views Slideshow、Media、Libraries API、CKEditor - WYSIWYG HTML editor、CAPTCHA、Link、Email Field、Advanced help。  
-各模組之功能，可利用本文末之參考資源，自行前往各模組之網頁了解。  
+各模組之功能，可利用文末之參考資源，自行前往各模組之網頁了解。  
   
 請輸入以下指令，以安裝並啟用以上所述之模組：
 ```drush
@@ -93,12 +93,131 @@ drush pm-enable varnish ctools views views_slideshow flexslider flexslider_views
 mkdir sites/all/libraries/ &&  
 cd sites/all/libraries/
 ```
-下載 Views
-
+下載並放置 Views Slideshow 所需之 JQuery 元件：
 ```bash
 git clone https://github.com/malsup/cycle.git && 
 mv cycle jquery.cycle
 ```
+下載並放置 Flex Slider 所需之 JavaScript 元件：
+```bash
+git clone https://github.com/woothemes/FlexSlider.git && 
+mv FlexSlider flexslider
+```
+下載並放置 CKEditor 所需之元件，並設定 CKFinder 的 config.php 檔：  
+(本文使用 CKEditor 4.2 及 CKFinder 2.4，欲選擇其它版本，請至 [CKEditor 官網](http://ckeditor.com/))
+```bash
+wget http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.2/ckeditor_4.2_full.zip && 
+wget http://download.cksource.com/CKFinder/CKFinder%20for%20PHP/2.4/ckfinder_php_2.4.zip? && 
+unzip ckeditor_4.2_full.zip && unzip ckfinder_php_2.4.zip && 
+rm ckeditor_4.2_full.zip ckfinder_php_2.4.zip && 
+nano ckfinder/config.php
+```
+找到 CheckAuthentication{} 段落，並將其註解或刪除。其內容看起來如：
+```text
+function CheckAuthentication()
+{
+//WARNING : DO NOT simply...
+...
+return false;
+}
+```
+再找到<code>$baseDir = resolveUrl($baseUrl);</code>這行，於其下新增：
+```text
+require_once '../../../../includes/filemanager.config.php';
+```
+儲存後退出，再移動 CKFinder 的元件至 CKEditor 的元件資料夾內：
+```bash
+mv ckfinder/ ../modules/ckeditor/ckfinder
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+```bash
+git clone https://github.com/douglascrockford/JSON-js.git &&
+mv JSON-js json2
+```
+
+sudo nano ../../default/settings.php
+
+UNCOMMENT # $cookie_domain = '...'; AND EDIT (AROUND LINE 338):
+======================================================
+$cookie_domain = 'localhost';
+
+
+
+RUN CRON
+drush core-cron
+
+VIEW THE STATUS REPORT
+drush core-requirements
+
+CLEAR CACHE SPECIFIC OR ALL
+drush cache-clear
+
+EDIT SETTINGS OF php.ini OR settings.php OR .htaccess
+drush core-config
+
+UPDATE DRUPAL CORE & DATABASE
+drush pm-update
+
+UPDATE DRUSH
+drush self-update
+
+
+
+
+MODULES/THEME DOWNLOAD
+drush pm-download
+
+MODULES/THEME ENABLE 
+drush pm-enable
+
+MODULES/THEME DISABLE 
+drush pm-disable
+
+MODULES/THEME UNINSTALL 
+drush pm-uninstall
+
+MODULES LIST
+drush pm-list
+drush pm-list --no-core
+
+
+
+USER ADD
+drush user-create username --mail="email@email.com" --password="password"
+USER PASSWORD CHANGE
+drush user-password username --password="new_pass"
+USER DELETE
+drush user-cancel username
+
+
+
+BACKUP CODES, FILES AND DATABASE
+sudo drush archive-dump
+
+RESTORE
+sudo drush archive-restore
+
+RSTYNC TO/FROM ANOTHER SERVER USING SSH
+sudo drush core-rsync
+
+
+
+REFERENCE
+http://www.drupaltky.org/article/41
+http://www.drush.org/
+http://www.drush.org/#php-eval
 
 
 DONE.
