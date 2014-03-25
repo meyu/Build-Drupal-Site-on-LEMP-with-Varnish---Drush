@@ -49,8 +49,7 @@ cd && rm -rf git git-1.8.4.tar.gz
 請前往網頁資料夾目錄，在下載 Drupal 後，將其置放為 web1 資料夾：(本文的 Drupal 版本為 7.23) 
 ```bash
 cd /usr/share/nginx/www && 
-drush dl drupal &&
-mv drupal-7.23/ web1/
+drush dl drupal --drupal-project-rename=web1
 ```
 接著，將設定 web1 這個網站。  
 本文使用以下設定：
