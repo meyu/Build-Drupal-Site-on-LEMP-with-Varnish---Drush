@@ -105,10 +105,10 @@ mv FlexSlider flexslider
 下載並放置 CKEditor 所需之元件，並設定 CKFinder 的 config.php 檔：  
 (本文使用 CKEditor 4.2 及 CKFinder 2.4，欲選擇其它版本，請至 [CKEditor 官網](http://ckeditor.com/))
 ```bash
-wget http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.2/ckeditor_4.2_full.zip && 
-wget http://download.cksource.com/CKFinder/CKFinder%20for%20PHP/2.4/ckfinder_php_2.4.zip? && 
-unzip ckeditor_4.2_full.zip && unzip ckfinder_php_2.4.zip && 
-rm ckeditor_4.2_full.zip ckfinder_php_2.4.zip && 
+wget http://download.cksource.com/CKEditor/CKEditor/CKEditor%204.3.4/ckeditor_4.3.4_full.zip && 
+wget http://download.cksource.com/CKFinder/CKFinder%20for%20PHP/2.4/ckfinder_php_2.4.zip && 
+unzip ckeditor_4.3.4_full.zip && unzip ckfinder_php_2.4.zip && 
+rm ckeditor_4.3.4_full.zip ckfinder_php_2.4.zip && 
 nano ckfinder/config.php
 ```
 找到 CheckAuthentication{} 段落，並將其註解或刪除。其內容看起來如：
